@@ -1,0 +1,33 @@
+type Wallet {
+    address: String!
+    privateKey: String!
+}
+
+type Network {
+    name: String!
+    url: String!
+}
+
+type TokenDetails {
+    name: String!
+    symbol: String!
+    decimals: Int!
+}
+
+type TokenBalance {
+    balance: Float!
+}
+
+type Query {
+    getAllWallets(walletAddress: String!): [Wallet!]!
+    getWalletInfo(walletAddress: String!): Wallet
+    getSupportedNetworks: [Network!]!
+    getTokenDetails(tokenAddress: String!): TokenDetails
+    getTokenBalance(walletAddress: String!, tokenAddress: String!): TokenBalance
+}
+
+type Mutation {
+    createWallet: Wallet
+    importWallet(privateKey: String!): Wallet
+    selectNetwork(network: String!): Network
+}
