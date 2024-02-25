@@ -30,7 +30,7 @@ export const importWalletFromPrivateKey = (privateKey: string): { address: strin
 
 export const getProvider = (network: SupportedNetworks) => {
     switch (network) {
-        case SupportedNetworks.Mainnet:
+        case SupportedNetworks.Ethereum:
             return ethers.getDefaultProvider();
         case SupportedNetworks.Optimism:
             return new ethers.JsonRpcProvider("https://mainnet.optimism.io");
