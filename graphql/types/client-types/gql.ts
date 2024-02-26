@@ -15,6 +15,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
 const documents = {
     "\n  mutation CreateWallet {\n    createWallet @client {\n      address\n      privateKey\n    }\n  }\n": types.CreateWalletDocument,
     "\n  mutation ImportWallet($privateKey: String!) {\n    importWallet(privateKey: $privateKey) @client {\n      address\n      privateKey\n    }\n  }\n": types.ImportWalletDocument,
+    "\n  mutation SelectWallet($walletAddress: String!) {\n    selectWallet(walletAddress: $walletAddress) @client {\n      address\n      privateKey\n    }\n  }\n": types.SelectWalletDocument,
     "\n  mutation SelectNetwork($network: SupportedNetwork!) {\n    selectNetwork(network: $network) @client\n  }\n": types.SelectNetworkDocument,
     "\n  query GetCurrentWallet {\n    getCurrentWallet @client {\n      address\n      privateKey\n    }\n  }\n": types.GetCurrentWalletDocument,
     "\n  query GetAllWallets {\n    getAllWallets @client {\n      address\n      privateKey\n    }\n  }\n": types.GetAllWalletsDocument,
@@ -46,6 +47,10 @@ export function graphql(source: "\n  mutation CreateWallet {\n    createWallet @
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  mutation ImportWallet($privateKey: String!) {\n    importWallet(privateKey: $privateKey) @client {\n      address\n      privateKey\n    }\n  }\n"): (typeof documents)["\n  mutation ImportWallet($privateKey: String!) {\n    importWallet(privateKey: $privateKey) @client {\n      address\n      privateKey\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation SelectWallet($walletAddress: String!) {\n    selectWallet(walletAddress: $walletAddress) @client {\n      address\n      privateKey\n    }\n  }\n"): (typeof documents)["\n  mutation SelectWallet($walletAddress: String!) {\n    selectWallet(walletAddress: $walletAddress) @client {\n      address\n      privateKey\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

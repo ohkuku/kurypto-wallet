@@ -43,7 +43,7 @@ export type Query = {
   __typename?: 'Query';
   getAllWallets: Array<Wallet>;
   getCurrentNetwork: SupportedNetwork;
-  getCurrentWallet: Wallet;
+  getCurrentWallet?: Maybe<Wallet>;
   getSupportedNetworks: Array<SupportedNetwork>;
   getTokenBalance: TokenBalance;
   getTokenDetails: TokenDetails;
@@ -187,7 +187,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   getAllWallets?: Resolver<Array<ResolversTypes['Wallet']>, ParentType, ContextType>;
   getCurrentNetwork?: Resolver<ResolversTypes['SupportedNetwork'], ParentType, ContextType>;
-  getCurrentWallet?: Resolver<ResolversTypes['Wallet'], ParentType, ContextType>;
+  getCurrentWallet?: Resolver<Maybe<ResolversTypes['Wallet']>, ParentType, ContextType>;
   getSupportedNetworks?: Resolver<Array<ResolversTypes['SupportedNetwork']>, ParentType, ContextType>;
   getTokenBalance?: Resolver<ResolversTypes['TokenBalance'], ParentType, ContextType, RequireFields<QueryGetTokenBalanceArgs, 'tokenAddress' | 'walletAddress'>>;
   getTokenDetails?: Resolver<ResolversTypes['TokenDetails'], ParentType, ContextType, RequireFields<QueryGetTokenDetailsArgs, 'tokenAddress'>>;

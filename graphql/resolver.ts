@@ -1,4 +1,4 @@
-import { Resolvers } from '@/graphql/types/resolver-types';
+import { Maybe, Resolvers, Wallet } from '@/graphql/types/resolver-types';
 import { InMemoryCache } from '@apollo/client';
 import {
   GetAllWalletsQuery,
@@ -12,7 +12,7 @@ import {
   GET_ALL_WALLETS,
   GET_CURRENT_NETWORK,
   GET_TOKEN_DETAILS,
-  GET_WALLET_INFO,
+  GET_CURRENT_WALLET,
 } from '@/graphql/query/queries.gql';
 import {
   createWallet,
@@ -29,11 +29,9 @@ export const resolvers: Resolvers<{
   Query: {
     getCurrentWallet: (_, __, { cache }) => {
       const queryResult = cache.readQuery<GetCurrentWalletQuery>({
-        query: GET_WALLET_INFO,
+        query: GET_CURRENT_WALLET,
       });
-      if (!queryResult?.getCurrentWallet)
-        throw new Error('Wallet is not found in cache');
-      return queryResult.getCurrentWallet;
+      return queryResult?.getCurrentWallet as Maybe<Wallet>;
     },
     getAllWallets: (_, __, { cache }) => {
       const queryResult = cache.readQuery<GetAllWalletsQuery>({
@@ -146,9 +144,9 @@ export const resolvers: Resolvers<{
       const existingWallets = existingWalletsQuery?.getAllWallets || [];
       const updatedWallets = [...existingWallets, wallet];
 
-      cache.writeQuery({
+      cache.writeQuery<GetAllWalletsQuery>({
         query: GET_ALL_WALLETS,
-        data: { wallets: updatedWallets },
+        data: { getAllWallets: updatedWallets },
       });
 
       return wallet;
@@ -174,7 +172,7 @@ export const resolvers: Resolvers<{
       if (!wallet) throw new Error('Wallet is not found in cache');
 
       cache.writeQuery<GetCurrentWalletQuery>({
-        query: GET_WALLET_INFO,
+        query: GET_CURRENT_WALLET,
         data: { getCurrentWallet: wallet },
       });
 

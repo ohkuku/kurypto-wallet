@@ -23,7 +23,7 @@ export const walletSchema = gql`
 
   type Query {
     getAllWallets: [Wallet!]!
-    getCurrentWallet: Wallet!
+    getCurrentWallet: Wallet
 
     getSupportedNetworks: [SupportedNetwork!]!
     getCurrentNetwork: SupportedNetwork!

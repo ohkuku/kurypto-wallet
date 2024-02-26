@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const GET_WALLET_INFO = gql`
+export const GET_CURRENT_WALLET = gql`
   query GetCurrentWallet {
     getCurrentWallet @client {
       address

@@ -18,6 +18,15 @@ export const IMPORT_WALLET = gql`
   }
 `;
 
+export const SELECT_WALLET = gql`
+  mutation SelectWallet($walletAddress: String!) {
+    selectWallet(walletAddress: $walletAddress) @client {
+      address
+      privateKey
+    }
+  }
+`;
+
 export const SELECT_NETWORK = gql`
   mutation SelectNetwork($network: SupportedNetwork!) {
     selectNetwork(network: $network) @client
