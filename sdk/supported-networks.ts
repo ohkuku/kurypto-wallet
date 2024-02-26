@@ -1,4 +1,4 @@
 export enum SupportedNetworks {
-    Ethereum = 'Ethereum',
-    Optimism = 'Optimism'
+  Ethereum = 'Ethereum',
+  Optimism = 'Optimism',
 }
